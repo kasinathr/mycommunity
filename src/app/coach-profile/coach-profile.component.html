@@ -1,0 +1,70 @@
+<button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+    {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+  </button>
+  <mat-horizontal-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Personal Details</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="First name" formControlName="firstCtrl" required>
+        </mat-form-field> 
+        <mat-form-field>
+            <input matInput placeholder="Last name" formControlName="firstCtrl" required>
+          </mat-form-field><br>
+          <mat-form-field>
+            <input matInput placeholder="Phone Number" formControlName="firstCtrl" required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Address" formControlName="firstCtrl" required>
+          </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Coach Details</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="Coach Type e.g Yoga" formControlName="secondCtrl" required>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Credential e.g Cerified" formControlName="secondCtrl" required>
+          </mat-form-field><br>
+          <mat-form-field>
+            <input matInput placeholder="No of experience" formControlName="secondCtrl" required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Detail Description" formControlName="secondCtrl" required>
+          </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="thirdFormGroup">
+        <form [formGroup]="thirdFormGroup">
+          <ng-template matStepLabel>Upload</ng-template>
+          <mat-form-field>
+            <input matInput placeholder="Upload Picture" formControlName="secondCtrl" required>
+          </mat-form-field>
+          <mat-form-field>
+              <input matInput placeholder="Upload DL" formControlName="secondCtrl" required>
+            </mat-form-field><br>
+            <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      You are now done.
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+  
