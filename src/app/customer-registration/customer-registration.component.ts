@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Customer } from './customer.model';
-import { CustomerService } from './customer.service';
+import { CustomerService } from '../services/customer.service';
 import {Router} from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, Validators, FormBuilder ,EmailValidator} from '@angular/forms';
-import { AlertService } from '../alerts.service';
+import { AlertService } from '../services/alerts.service';
 
 @Component({
   selector: 'app-customer-registration',
@@ -14,6 +14,7 @@ import { AlertService } from '../alerts.service';
 export class CustomerRegistrationComponent implements OnInit {
   customer1: Customer = new Customer();
   registerForm: FormGroup;
+  custLocal:any;
   loading = false;
   submitted = false;
   namePattern = "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$";
@@ -30,7 +31,7 @@ export class CustomerRegistrationComponent implements OnInit {
 
   createCustomer() {
    
-    console.log("create Customer called"+this.customer1.firstName);
+    console.log("create Customer called"+this.customer1.user.firstName);
     this._customerService.createCustomer(this.customer1).subscribe(
       data=>{
         this.customer1 = data;
@@ -77,7 +78,9 @@ callService(){
       lastName: ['', Validators.compose([Validators.pattern(this.namePattern), Validators.minLength(3), Validators.required])],
       email: ['', [Validators.required, Validators.email]],
       phoneNumber: ['', Validators.compose([Validators.pattern(this.phonePattern), Validators.required])],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      role:["USER"]
+      
   });
     
    }
@@ -90,16 +93,17 @@ callService(){
   onSubmit() {
     this.submitted = true;
     console.log("Forrm Validity"+this.registerForm.invalid);
-    
     console.log("Submitted value"+this.submitted);
 // stop here if form is invalid
     if (this.registerForm.invalid) {
         return;
     }
   console.log(this.submitted)
-
+    this.custLocal = this.registerForm.value;
+    this.custLocal.role = ["USER"];
+    
     this.loading = true;
-    this._customerService.createCustomer(this.registerForm.value)
+    this._customerService.createCustomer(this.custLocal)
         .subscribe(
             data => {
                 this.alertService.success('Registration successful', true);

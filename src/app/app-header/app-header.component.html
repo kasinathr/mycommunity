@@ -9,10 +9,9 @@
               <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                   Categories
+                   Videos
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" >
-                    <a class="dropdown-item" routeLink="coach">Coach</a>
                     <a class="dropdown-item" href="#">Travel</a>
                     <a class="dropdown-item" href="#">Technology</a>
                     <a class="dropdown-item" href="#">Religious</a>
@@ -27,15 +26,17 @@
                 <li class="nav-item active">
                   <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Link</a>
-                </li>
+
+                  <li class="nav-item active"><a class="nav-link ul" routerLink="./profile" ><u>Profile</u></a></li>
+               
                </ul>
               <ul class="nav navbar-nav navbar-right">
+                <li class="nav-item active"><a class="nav-link ul" routerLink="./class" ><u>Create a Class</u></a></li>
                 <li class="nav-item active"><a class="nav-link ul" routerLink="./coach" ><u>Coach</u></a></li>
-                <li class="nav-item active"><a class="nav-link ul" routerLink="/login" ><u>Sign In</u></a></li>
-                <li class="nav-item active"><a class="nav-link" routerLink="/register" ><u>Become a Member</u></a></li>
-                <li class="nav-item active"><a class="nav-link" routerLink="#" ><b><u>All Access Pass</u></b></a></li>
+                <li class="nav-item active"><a *ngIf="!autheticationService.isLoggedIn()" class="nav-link ul" routerLink="/login" ><u>Sign In</u></a></li>
+                <li class="nav-item active"><a *ngIf="!!autheticationService.isLoggedIn()" class="nav-link ul" routerLink="/home" (click) = "logout()" ><u>Logout</u></a></li>
+                <li class="nav-item active"><a *ngIf="!autheticationService.isLoggedIn()"class="nav-link" routerLink="/register" ><u>Register</u></a></li>
+                <li class="nav-item active"><a class="nav-link" routerLink="#" ><b><u>Membership</u></b></a></li>
               </ul>
               </div>
           </nav>

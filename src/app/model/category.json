@@ -1,0 +1,38 @@
+[
+    {
+        "abbreviation": "MAT",
+        "name": "Math"
+    },
+    {
+        "abbreviation": "ENG",
+        "name": "English"
+    },
+    {
+        "abbreviation": "HND",
+        "name": "Hindi"
+    },
+    {
+        "abbreviation": "SNKT",
+        "name": "Sanskrit"
+    },
+    {
+        "abbreviation": "SPTS",
+        "name": "Sports"
+    },
+    {
+        "abbreviation": "MUS",
+        "name": "Music"
+    },
+    {
+        "abbreviation": "TSTP",
+        "name": "Test Prep"
+    },
+    {
+        "abbreviation": "ART",
+        "name": "Arts"
+    },
+    {
+        "abbreviation": "FTNS",
+        "name": "Fitness"
+    }
+]

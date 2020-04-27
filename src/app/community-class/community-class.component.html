@@ -1,0 +1,153 @@
+<div class="container">
+<form [formGroup]="classForm" (ngSubmit)="onSubmit()" >
+   
+    <div class="text-center mb-4">
+        <h1 class="h3 mb-3 font-weight-normal" >Create A Class</h1>
+    </div>
+    <!--Row starts -->
+   <div class="form-row">
+        <div class="form-group col-md-6">
+            <div class="form-group">
+                <label for="className" class="control-label">Class Name</label>
+                <input type="text" formControlName="className" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.className.errors }" autocomplete="off" placeholder="Class Name"/>
+                <div *ngIf="f.className.errors" class="invalid-feedback">
+                    <div class="invalid-feedback" *ngIf="f.className.required">
+                        Please enter your Class Name
+                    </div>
+                    <div *ngIf="f.className.errors?.className" class="invalid-feedback">
+                        Please enter a valid Class Name
+                    </div>
+            </div>
+            </div>
+        </div>
+       
+        <div class="form-group col-md-6">
+            <div class="form-group">
+                <label for="classDescription" class="control-label">Class Description</label>
+                <input type="text" formControlName="classDescription" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.classDescription.errors }" autocomplete="off" placeholder="Class Description"/>
+                <div *ngIf="f.classDescription.errors" class="invalid-feedback">
+                    <div *ngIf="f.classDescription.errors.required">Class Description is Required</div>
+                </div>
+            </div>
+        </div>
+   </div>
+   <div class="form-row">
+        <div class="form-group col-md-6">
+            <div class="form-group">
+                <label for="classCategory" class="control-label">Class Category</label>
+                <mat-select placeholder="Choose..." [(value)]="classCategory" formControlName="classCategory" >
+                    <mat-option *ngFor="let cat of classCategoryOption" [value]="cat.abbreviation">
+                      {{cat.name}}
+                    </mat-option>
+                  </mat-select>
+                <!--<div *ngIf="f.classCategory.errors" class="invalid-feedback">
+                    <div *ngIf="f.classCategory.errors.required">Class Category is Required</div>
+                </div> -->
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <div class="form-group">
+                <label for="ageGroup" class="control-label">Age Group</label>
+                <mat-select placeholder="Choose..." [(value)]="ageGroup" formControlName="ageGroup" >
+                    <mat-option *ngFor="let age of ageGroupOption" [value]="age.abbreviation">
+                      {{age.name}}
+                    </mat-option>
+                  </mat-select>
+                <div *ngIf="f.ageGroup.errors" class="invalid-feedback">
+                    <div *ngIf="f.ageGroup.errors.required">Class Age Group is Required</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <div class="form-group">
+                <label for="classLocation" class="control-label">Class Location</label>
+                <input type="text" formControlName="classLocation" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.classLocation.errors }" autocomplete="off" placeholder="Class Location"/>
+                <div *ngIf="f.classLocation.errors" class="invalid-feedback">
+                    <div *ngIf="f.classLocation.errors.required">Class Location is Required</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <div class="form-group">
+                <label for="classTime" class="control-label">Class Time</label>
+                <input formControlName="classTime"[ngxTimepicker]="picker" min="9:00 AM" max="6:00 PM" format="12">
+                <ngx-material-timepicker #picker></ngx-material-timepicker>
+                <div *ngIf="f.classTime.errors" class="invalid-feedback">
+                    <div *ngIf="f.classTime.errors.required">Class Time is Required</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <div class="form-group">
+                <label for="classCapacity" class="control-label">Class Capacity</label>
+                <input type="text" formControlName="classCapacity" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.classCapacity.errors }" autocomplete="off" placeholder="Class Capacity"/>
+                <div *ngIf="f.classCapacity.errors" class="invalid-feedback">
+                    <div *ngIf="f.classCapacity.errors.required">Class Capacity is Required</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <div class="form-group">
+                <label for="classTeacher" class="control-label">Class Teacher/Coach</label>
+                <input type="text" formControlName="classTeacher" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.classTeacher.errors }" autocomplete="off" placeholder="Class Teacher"/>
+                <div *ngIf="f.classTeacher.errors" class="invalid-feedback">
+                    <div *ngIf="f.classTeacher.errors.required">Class Teacher is Required</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <div class="form-group">
+                <label for="classLevel" class="control-label">Class Level</label>
+                <mat-select placeholder="Choose..." [(value)]="classLevel" formControlName="classLevel" >
+                <mat-option *ngFor="let level of classLevelOption" [value]="level.abbreviation">
+                  {{level.name}}
+                </mat-option>
+              </mat-select>
+                    <div *ngIf="f.classLevel.errors" class="invalid-feedback">
+                    <div *ngIf="f.classLevel.errors.required">Class Level Required</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <div class="form-group">
+                <label for="classPrice" class="control-label">Class Price</label>
+                <input type="text" formControlName="classPrice" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.classPrice.errors }" autocomplete="off" placeholder="Class Price"/>
+                <div *ngIf="f.classPrice.errors" class="invalid-feedback">
+                    <div *ngIf="f.classPrice.errors.required">Class Price Required</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+        </div>
+        <div class="form-group col-md-6">
+        <button mat-button  type="submit" class="btn btn-primary" >Submit</button>
+        </div>
+</div>
+
+<!--Row Ends-->
+<br>
+1st Form Values : {{ classForm.value | json }} <br><br>
+Class Name?{{ classForm.get('className').valid }}
+Class Desc?{{ classForm.get('classDescription').valid }}
+Category?{{ classForm.get('classCategory').valid }}
+Age Group?{{ classForm.get('ageGroup').valid }}
+Location?{{ classForm.get('classLocation').valid }}
+Time?{{ classForm.get('classTime').valid }}
+Capacity?{{ classForm.get('classCapacity').valid }}
+Teacher?{{ classForm.get('classTeacher').valid }}
+Level?{{ classForm.get('classLevel').valid }}
+Price?{{ classForm.get('classPrice').valid }}
+
+
+
+</form>
+</div>
+

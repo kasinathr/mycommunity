@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ComponentFactoryResolver } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlertService } from '../alerts.service';
-import { AuthenticationService } from '../authentication-service';
+import { AuthenticationService } from '../services/authentication-service';
+import { AlertService } from '../services/alerts.service';
 
 
 
@@ -51,17 +51,17 @@ export class CustomerloginComponent implements OnInit {
           return;
       }
       console.log("Submitted");
-
       this.loading = true;
       console.log(this.loginForm.value);
       this.authenticationService.login(this.loginForm.value)
       .subscribe(
               data => {
-                  this.router.navigate([this.returnUrl]);
-              },
-              error => {
-                  this.alertService.error(error);
-                  this.loading = false;
+              console.log("login success?"+data)                 
+                // this.router.navigate([this.returnUrl]);
+                if(data){
+                alert("Hi");
+                 this.router.navigate(['/home']);
+                 }
               });
   }
 }

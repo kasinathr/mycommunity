@@ -1,1 +1,67 @@
-<p>profile works!</p>
+<form  (ngSubmit)="onSubmit()" [formGroup]="profileForm">
+    <div class="text-center mb-4">
+        <h1 class="h3 mb-3 font-weight-normal" >Profile</h1>
+    </div>
+    <div class="form-row">
+    <div class="form-group col-md-3">
+        <label for="hfirstName">Name</label>
+     <input type="text" class="form-control" formControlName="hfirstName">
+ </div> 
+ <div class="form-group col-md-3">
+     <label for="hfirstName">LastName</label>
+  <input type="text" class="form-control" formControlName="hlastName">
+  </div> 
+</div>
+    <div class="container">
+        <div class="form-row" formArrayName="familyMembers" *ngFor="let group of familyMembersArray.controls;let i=index" [formGroup]="i">
+            <div class="form-group col-md-3">
+                   <label for="firstName">First Name</label>
+                <input type="text" class="form-control" formControlName="firstName">
+            </div> 
+            <div class="form-group col-md-3">
+                <label for="lastName">LastName</label>
+             <input type="text" class="form-control" formControlName="lastName">
+             </div> 
+             <div class="form-group col-md-3">
+                 <!--
+                <label for="dateOfBirth" class="control-label">Date of Birth</label>
+                <input formControlName="dateOfBirth"[ngxDateicker]="picker">
+                <ngx-material-date-picker #picker></ngx-material-date-picker>
+             -->
+                <mat-form-field>
+                        <br>
+                    <mat-label>Date of Birth</mat-label>
+                    <input matInput  [matDatepicker]="picker" formControlName="dateOfBirth">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+             </div>
+             <div class="form-group col-md-2">
+                <label for="relation">Relation</label>
+                <input type="select" class="form-control" formControlName="relation">
+             </div>
+             <div class="form-group col-md-1">
+                <label></label>
+                <br>
+                <span (click)="removeForm(i)" class="btn btn-danger">-</span>
+             </div>
+        </div>
+      
+        <span (click)="addForm()" class="btn btn-success">+</span>
+        <button  class="btn btn-primary">Submit</button>
+
+    </div>
+    <div class="card border-primary mb-3" style="max-width: 130rem;">
+        <div class="card-header">Your Family Members</div>
+        <div class="card-body text-primary">
+          <h5 class="card-title">Primary card title</h5>
+        </div>
+        <div class="card-body text-primary">
+            <h5 class="card-title">Primary card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+      </div>
+<!--Row Ends-->
+</form>
+
+<!--{{FamilyMember.firstName}}-->
